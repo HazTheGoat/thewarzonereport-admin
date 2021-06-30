@@ -45,6 +45,9 @@
     },
     "test": {
       "type": "string"
+    },
+    "kristoffer": {
+      "type": "string"
     }
   }
 }
