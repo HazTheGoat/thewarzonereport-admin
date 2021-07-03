@@ -1,11 +1,15 @@
 import "../../styles/globals.css";
 import type { AppProps } from "next/app";
-import { AuthUserProvider } from "../store/AuthUserContext";
+import { AppContextProvider } from "../store/AppContext";
+import initFirebase from "../firebase/initFirebase";
+
 function MyApp({ Component, pageProps }: AppProps) {
+  initFirebase();
+
   return (
-    <AuthUserProvider>
+    <AppContextProvider>
       <Component {...pageProps} />
-    </AuthUserProvider>
+    </AppContextProvider>
   );
 }
 export default MyApp;
