@@ -5,6 +5,7 @@ import { AuthUserProvider } from "../context/AuthUserContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthUserProvider>
+		hehehe
       <Component {...pageProps} />
     </AuthUserProvider>
   );

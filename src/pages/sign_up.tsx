@@ -11,12 +11,12 @@ const SignUp = () => {
   //Optional error handling
   const [error, setError] = useState(null);
 
-  const { createUserWithEmailAndPassword } = useAuth();
+  const { createUserWithEmailAndPassword, createUserWithGmail } = useAuth();
 
-  const onSubmit = (event) => {
+  const onEmailSignupSubmit = (event) => {
     setError(null);
     if (passwordOne === passwordTwo)
-      createUserWithEmailAndPassword(email, passwordOne)
+	createUserWithEmailAndPassword(email, passwordOne)
         .then((authUser) => {
           console.log("Success. The user is created in firebase");
           router.push("/logged_in");
@@ -28,60 +28,16 @@ const SignUp = () => {
     event.preventDefault();
   };
 
+  const onGmailSignupSubmit = () => {
+	createUserWithGmail()
+  }
+
   return (
     <div className="text-center" style={{ padding: "40px 0px" }}>
       <div>
         <div>
-          <div
-            style={{ maxWidth: "400px", margin: "auto" }}
-            onSubmit={onSubmit}
-          >
-            {error && alert(error)}
-            <div>
-              <label>Email</label>
-              <div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  name="email"
-                  id="signUpEmail"
-                  placeholder="Email"
-                />
-              </div>
-            </div>
-            <div>
-              <label>Password</label>
-              <div>
-                <input
-                  type="password"
-                  name="passwordOne"
-                  value={passwordOne}
-                  onChange={(event) => setPasswordOne(event.target.value)}
-                  id="signUpPassword"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-            <div>
-              <label>Confirm Password</label>
-              <div>
-                <input
-                  type="password"
-                  name="password"
-                  value={passwordTwo}
-                  onChange={(event) => setPasswordTwo(event.target.value)}
-                  id="signUpPassword2"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-            <div>
-              <div>
-                <button onClick={onSubmit}>Sign Up</button>
-              </div>
-            </div>
-          </div>
+		  <br /><br />
+		  <button onClick={onGmailSignupSubmit}>or Sign in using gmail</button>
         </div>
       </div>
     </div>

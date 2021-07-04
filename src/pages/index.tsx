@@ -4,75 +4,14 @@ import { useRouter } from "next/router";
 import { useAuth } from "../context/AuthUserContext";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const router = useRouter();
-  const { signInWithEmailAndPassword } = useAuth();
-
-  const onSubmit = (event) => {
-    setError(null);
-    signInWithEmailAndPassword(email, password)
-      .then((authUser) => {
-        console.log("Success. The user is created in firebase");
-        router.push("/logged_in");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-    event.preventDefault();
-  };
 
   return (
-    <div className="text-center" style={{ padding: "40px 0px" }}>
-      <div>
-        <div>
-          <h2>Login</h2>
-        </div>
-      </div>
-      <div style={{ maxWidth: "400px", margin: "auto" }}>
-        <div>
-          <form onSubmit={onSubmit}>
-            {error && alert(error)}
-            <div>
-              <label>Email</label>
-              <div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  name="email"
-                  id="loginEmail"
-                  placeholder="Email"
-                />
-              </div>
-            </div>
-            <div>
-              <label>Password</label>
-              <div>
-                <input
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                  id="loginPassword"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-            <div>
-              <div>
-                <button>Login</button>
-              </div>
-            </div>
-            <div>
-              <div>
-                No account? <Link href="/sign_up">Create one</Link>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+    <div className="text-center">
+          <h2>The warzone report</h2>
+		  
+		  <Link href="/sign_up">
+			  <a>Sign in </a>
+		  </Link>
     </div>
   );
 }
