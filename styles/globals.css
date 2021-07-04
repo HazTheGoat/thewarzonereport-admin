@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.inline {
+	list-style: none;
+}
+
+.inline li {
+	display: inline-block;
+	padding: 0 20px;
+}
