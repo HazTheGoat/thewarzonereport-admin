@@ -24,7 +24,9 @@ const Users = ({ Component, pageProps }: AppProps) => {
 				.doc(authUser.uid)
 				.onSnapshot((doc) => {
 					console.log("DATA: ", doc.data());
-					setUsers(doc.data())
+					const data = doc.data();
+					
+					setUsers(data?.users)
 				});
 		} catch (error) {
 			console.log(error);
@@ -35,7 +37,13 @@ const Users = ({ Component, pageProps }: AppProps) => {
 		<Layout>
 			<h1>Users</h1>
 
-		<code>{ users }</code>
+		{
+			users.map((x: any) => (
+				<div key={x.username}>
+					{x.username}
+				</div>
+			))
+		}
 		</Layout>
 	);
 };
