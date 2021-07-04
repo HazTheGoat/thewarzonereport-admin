@@ -1,13 +1,14 @@
 import "../../styles/globals.css";
 import type { AppProps } from "next/app";
 import { AuthUserProvider } from "../context/AuthUserContext";
+import React from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <AuthUserProvider>
-		hehehe
-      <Component {...pageProps} />
-    </AuthUserProvider>
-  );
+
+	return (
+		<AuthUserProvider>
+			<Component {...pageProps} />
+		</AuthUserProvider>
+	);
 }
 export default MyApp;

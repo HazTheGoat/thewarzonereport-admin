@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import { useAuth } from "../../context/AuthUserContext";
 
-const Admin = ({ Component, pageProps }: AppProps) => {
+const AppSettings = ({ Component, pageProps }: AppProps) => {
 	const { authUser, loading } = useAuth() as any;
 
 	useEffect(() => {
@@ -13,9 +13,9 @@ const Admin = ({ Component, pageProps }: AppProps) => {
 
 	return (
 		<Layout>
-			<h1>Admin panel</h1>
+			<h1>App settings</h1>
 		</Layout>
 	);
 };
 
-export default Admin;
+export default AppSettings;

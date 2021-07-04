@@ -1,6 +1,8 @@
 import router from "next/router";
 import { useState, useEffect } from "react";
 import firebase from "./firebase";
+import {initialDatabaseData} from './../constants/data';
+import "firebase/firestore";
 
 const formatAuthUser = (user) => ({
 	uid: user.uid,
@@ -36,12 +38,21 @@ export default function useFirebaseAuth() {
 		provider.addScope('profile');
 		provider.addScope('email');
 		firebase.auth().signInWithPopup(provider).then(function (result) {
-			// This gives you a Google Access Token.
-			var token = result.credential.accessToken;
-			// The signed-in user info.
-			var user = result.user;
+			if (result.additionalUserInfo.isNewUser) {
+				initiateNewAccount(result.user.uid);
+			}
+
 			router.push("/admin")
 		});
+	}
+
+	const initiateNewAccount = (userId) => {
+		firebase
+			.firestore()
+			.collection("instances")
+			.doc(userId)
+			.set(initialDatabaseData)
+			.then(alert("totally successful"));
 	}
 
 	const signOut = () => firebase.auth().signOut().then(clear);
